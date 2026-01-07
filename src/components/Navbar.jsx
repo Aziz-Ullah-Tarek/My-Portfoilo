@@ -106,8 +106,8 @@ const Navbar = () => {
                         className="hidden md:block"
                     >
                         <a
-                            href="/assets/resume.pdf"
-                            download
+                            href="/Resume.pdf"
+                            download="Aziz-Ullah-Tarek-Resume.pdf"
                             className="group relative inline-flex items-center gap-2 px-6 py-2.5 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
                         >
                             <span>Resume</span>
@@ -159,8 +159,8 @@ const Navbar = () => {
                     
                     {/* Mobile Resume Button */}
                     <a
-                        href="/assets/resume.pdf"
-                        download
+                        href="/Resume.pdf"
+                        download="Aziz-Ullah-Tarek-Resume.pdf"
                         className="flex items-center justify-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-lg transition-all duration-300"
                     >
                         <span>Resume</span>
