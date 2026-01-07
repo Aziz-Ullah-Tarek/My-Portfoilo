@@ -89,7 +89,7 @@ export const skills = [
       { name: "HTML5", level: 95 },
       { name: "CSS3", level: 90 },
       { name: "Tailwind CSS", level: 88 },
-      { name: "Redux", level: 80 }
+      { name: "Framer Motion", level: 75 }
     ]
   },
   {
@@ -98,16 +98,25 @@ export const skills = [
       { name: "Node.js", level: 82 },
       { name: "Express.js", level: 80 },
       { name: "MongoDB", level: 78 },
+      { name: "MySQL", level: 75 },
+      { name: "XAMPP", level: 70 },
       { name: "REST API", level: 85 }
+    ]
+  },
+  {
+    category: "Programming",
+    items: [
+      { name: "C", level: 80 },
+      { name: "C++", level: 85 },
+      { name: "Java", level: 82 }
     ]
   },
   {
     category: "Tools & Others",
     items: [
       { name: "Git & GitHub", level: 85 },
-      { name: "Vite", level: 80 },
-      { name: "Responsive Design", level: 92 },
-      { name: "GSAP/Animations", level: 75 }
+      { name: "Figma", level: 78 },
+      { name: "Responsive Design", level: 92 }
     ]
   }
 ];
