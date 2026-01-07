@@ -5,12 +5,27 @@ import { HiDownload, HiMenuAlt3, HiX } from 'react-icons/hi';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
 
-    // Handle scroll effect
+    // Handle scroll effect and active section detection
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
+
+            // Detect which section is currently in view
+            const sections = ['home', 'about', 'skills', 'education', 'projects', 'contact'];
+            const scrollPosition = window.scrollY + 100; // Offset for navbar height
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = document.getElementById(sections[i]);
+                if (section && section.offsetTop <= scrollPosition) {
+                    setActiveSection(sections[i]);
+                    break;
+                }
+            }
         };
+
+        handleScroll(); // Check on mount
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -60,22 +75,27 @@ const Navbar = () => {
 
                     {/* Center - Navigation Menu (Desktop) */}
                     <div className="hidden md:flex items-center space-x-1">
-                        {navItems.map((item, index) => (
-                            <motion.a
-                                key={item.name}
-                                href={item.href}
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className={`px-4 py-2 text-base font-medium transition-all duration-300 rounded-lg
-                                    ${item.name === 'Home' 
-                                        ? 'text-cyan-400' 
-                                        : 'text-gray-300 hover:text-cyan-400'
-                                    } hover:bg-slate-800/50`}
-                            >
-                                {item.name}
-                            </motion.a>
-                        ))}
+                        {navItems.map((item, index) => {
+                            const sectionId = item.href.replace('#', '');
+                            const isActive = activeSection === sectionId;
+                            
+                            return (
+                                <motion.a
+                                    key={item.name}
+                                    href={item.href}
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className={`px-4 py-2 text-base font-medium transition-all duration-300 rounded-lg
+                                        ${isActive
+                                            ? 'text-cyan-400 bg-slate-800/50' 
+                                            : 'text-gray-300 hover:text-cyan-400'
+                                        } hover:bg-slate-800/50`}
+                                >
+                                    {item.name}
+                                </motion.a>
+                            );
+                        })}
                     </div>
 
                     {/* Right - Resume Button (Desktop) */}
@@ -117,20 +137,25 @@ const Navbar = () => {
                 className="md:hidden overflow-hidden bg-slate-900/98 backdrop-blur-md"
             >
                 <div className="px-4 py-6 space-y-3">
-                    {navItems.map((item) => (
-                        <a
-                            key={item.name}
-                            href={item.href}
-                            onClick={() => setIsOpen(false)}
-                            className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300
-                                ${item.name === 'Home'
-                                    ? 'text-cyan-400 bg-slate-800/50'
-                                    : 'text-gray-300 hover:text-cyan-400 hover:bg-slate-800/50'
-                                }`}
-                        >
-                            {item.name}
-                        </a>
-                    ))}
+                    {navItems.map((item) => {
+                        const sectionId = item.href.replace('#', '');
+                        const isActive = activeSection === sectionId;
+                        
+                        return (
+                            <a
+                                key={item.name}
+                                href={item.href}
+                                onClick={() => setIsOpen(false)}
+                                className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300
+                                    ${isActive
+                                        ? 'text-cyan-400 bg-slate-800/50'
+                                        : 'text-gray-300 hover:text-cyan-400 hover:bg-slate-800/50'
+                                    }`}
+                            >
+                                {item.name}
+                            </a>
+                        );
+                    })}
                     
                     {/* Mobile Resume Button */}
                     <a
