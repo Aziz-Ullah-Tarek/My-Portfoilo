@@ -26,13 +26,13 @@ const Contact = () => {
     const socialLinks = [
         { 
             icon: FaFacebook, 
-            href: 'https://facebook.com', 
+            href: 'https://www.facebook.com/share/17NZg5CjPb/', 
             color: 'from-red-500 to-red-600',
             delay: 0.2 
         },
         { 
             icon: FaLinkedin, 
-            href: 'https://linkedin.com', 
+            href: 'https://www.linkedin.com/in/aziz-ullah-tarek/', 
             color: 'from-blue-500 to-blue-600',
             delay: 0.3 
         },
@@ -44,7 +44,7 @@ const Contact = () => {
         },
         { 
             icon: FaGithub, 
-            href: 'https://github.com', 
+            href: 'https://github.com/Aziz-Ullah-Tarek', 
             color: 'from-purple-500 to-pink-500',
             delay: 0.5 
         },
@@ -188,8 +188,8 @@ const Contact = () => {
                                 </motion.div>
                                 <div>
                                     <h4 className="text-lg font-semibold text-cyan-400 mb-1">My Email:</h4>
-                                    <a href="mailto:lamiyarahmankhan01@gmail.com" className="text-gray-300 hover:text-cyan-400 transition-colors">
-                                        lamiyarahmankhan01@gmail.com
+                                    <a href="mailto:azizullaht2002@gmail.com" className="text-gray-300 hover:text-cyan-400 transition-colors">
+                                        azizullaht2002@gmail.com
                                     </a>
                                 </div>
                             </motion.div>
@@ -211,8 +211,8 @@ const Contact = () => {
                                 </motion.div>
                                 <div>
                                     <h4 className="text-lg font-semibold text-cyan-400 mb-1">Call Me Now:</h4>
-                                    <a href="tel:+8801994063900" className="text-gray-300 hover:text-cyan-400 transition-colors">
-                                        +8801994063900
+                                    <a href="tel:+8801643884854" className="text-gray-300 hover:text-cyan-400 transition-colors">
+                                        +8801643884854
                                     </a>
                                 </div>
                             </motion.div>
