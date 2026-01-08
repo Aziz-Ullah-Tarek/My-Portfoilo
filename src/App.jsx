@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import AnimatedBackground from './components/AnimatedBackground'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import About from './components/About'
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <AnimatedBackground />
       <Navbar />
       <Home />
       <About />

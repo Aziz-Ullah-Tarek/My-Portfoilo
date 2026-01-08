@@ -34,29 +34,54 @@ const Education = () => {
             {/* Animated Background decorations */}
             <motion.div
                 animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
+                    scale: [1, 1.3, 1],
+                    x: [0, 30, 0],
+                    opacity: [0.2, 0.5, 0.2],
                 }}
                 transition={{
-                    duration: 8,
+                    duration: 16,
                     repeat: Infinity,
                     ease: "easeInOut"
                 }}
-                className="absolute top-20 right-20 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"
+                className="absolute top-20 right-20 w-[400px] h-[400px] bg-gradient-to-bl from-cyan-500/15 to-blue-500/15 rounded-full blur-3xl"
             ></motion.div>
             <motion.div
                 animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [0.2, 0.4, 0.2],
+                    scale: [1.2, 1, 1.2],
+                    y: [0, 40, 0],
+                    opacity: [0.3, 0.6, 0.3],
                 }}
                 transition={{
-                    duration: 10,
+                    duration: 20,
                     repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1
+                    ease: "easeInOut"
                 }}
-                className="absolute bottom-20 left-20 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
+                className="absolute bottom-20 left-20 w-[450px] h-[450px] bg-gradient-to-tr from-purple-500/15 to-pink-500/15 rounded-full blur-3xl"
             ></motion.div>
+            {/* Floating Educational Icons */}
+            {['📖', '🎓', '📚', '🏆', '✏️'].map((icon, i) => (
+                <motion.div
+                    key={i}
+                    animate={{
+                        y: [0, -35, 0],
+                        x: [0, Math.sin(i) * 15, 0],
+                        opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                        duration: 4.5 + i * 1.2,
+                        repeat: Infinity,
+                        delay: i * 0.6,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute text-4xl"
+                    style={{
+                        left: `${12 + i * 19}%`,
+                        top: `${15 + i * 10}%`,
+                    }}
+                >
+                    {icon}
+                </motion.div>
+            ))}
 
             <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Title */}

@@ -54,9 +54,82 @@ const Projects = () => {
 
     return (
         <section id="projects" className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-20 px-4 relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                {/* Gradient Orbs */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.5, 1],
+                        rotate: [0, 180, 360],
+                        x: [0, 60, 0],
+                        y: [0, -30, 0],
+                        opacity: [0.15, 0.35, 0.15],
+                    }}
+                    transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute top-10 left-[10%] w-[500px] h-[500px] bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1.3, 1, 1.3],
+                        rotate: [360, 180, 0],
+                        x: [0, -50, 0],
+                        y: [0, 40, 0],
+                        opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                        duration: 25,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute bottom-20 right-[15%] w-[550px] h-[550px] bg-gradient-to-tr from-purple-600/20 to-pink-500/20 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1.1, 1.4, 1.1],
+                        x: [0, -40, 0],
+                        opacity: [0.1, 0.3, 0.1],
+                    }}
+                    transition={{
+                        duration: 18,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute top-[40%] right-[5%] w-[450px] h-[450px] bg-gradient-to-bl from-blue-500/15 to-cyan-500/15 rounded-full blur-3xl"
+                />
+                
+                {/* Floating Code Brackets */}
+                {['{', '}', '<', '>', '[', ']'].map((symbol, i) => (
+                    <motion.div
+                        key={i}
+                        animate={{
+                            y: [0, -45, 0],
+                            x: [0, Math.cos(i) * 20, 0],
+                            rotate: [0, 360, 0],
+                            opacity: [0.1, 0.3, 0.1],
+                        }}
+                        transition={{
+                            duration: 6 + i * 0.8,
+                            repeat: Infinity,
+                            delay: i * 0.4,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute text-6xl font-bold text-cyan-400/20"
+                        style={{
+                            left: `${8 + i * 15}%`,
+                            top: `${20 + (i % 2) * 40}%`,
+                        }}
+                    >
+                        {symbol}
+                    </motion.div>
+                ))}
+                
+                {/* Grid Pattern Overlay */}
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+            </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Section Header */}

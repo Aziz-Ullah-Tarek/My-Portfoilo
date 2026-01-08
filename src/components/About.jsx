@@ -14,16 +14,16 @@ const About = () => {
 
     // Animated website previews for laptop screen
     const websiteImages = [
-        'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80', // E-commerce
+        'https://i.ibb.co.com/Dg4t4Jq6/images-2.jpg', // Hobies
         'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80', // Dashboard
-        'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80', // Social Media
+        'https://i.ibb.co.com/PGb9jJGS/mern-dev-img.png', // Coding
         'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80', // Portfolio
     ];
 
     const websitePreview = [
-        { type: 'E-Commerce', image: websiteImages[0] },
+        { type: 'Hobbies', image: websiteImages[0] },
         { type: 'Dashboard', image: websiteImages[1] },
-        { type: 'Social Media', image: websiteImages[2] },
+        { type: 'Coding', image: websiteImages[2] },
         { type: 'Portfolio', image: websiteImages[3] },
     ];
 
@@ -48,9 +48,33 @@ const About = () => {
                         className="space-y-6"
                     >
                         <h3 className="text-3xl md:text-4xl font-bold text-white">
-                            Hi, I'm{' '}
+                            {"Hi, I'm ".split('').map((char, index) => (
+                                <motion.span
+                                    key={index}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{
+                                        duration: 0.1,
+                                        delay: index * 0.05
+                                    }}
+                                >
+                                    {char}
+                                </motion.span>
+                            ))}
                             <span className="bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent">
-                                {personalInfo.name.split(' ')[0]}
+                                {personalInfo.name.split(' ')[0].split('').map((char, index) => (
+                                    <motion.span
+                                        key={index}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{
+                                            duration: 0.1,
+                                            delay: (9 + index) * 0.05
+                                        }}
+                                    >
+                                        {char}
+                                    </motion.span>
+                                ))}
                             </span>
                         </h3>
                         
@@ -172,8 +196,62 @@ const About = () => {
     };
 
     return (
-        <section id="about" className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="about" className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-20 relative overflow-hidden">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                <motion.div
+                    animate={{
+                        scale: [1, 1.4, 1],
+                        x: [0, 50, 0],
+                        opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                        duration: 18,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute top-20 right-10 w-[450px] h-[450px] bg-gradient-to-br from-cyan-500/15 to-blue-500/15 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1.3, 1, 1.3],
+                        y: [0, -60, 0],
+                        opacity: [0.3, 0.5, 0.3],
+                    }}
+                    transition={{
+                        duration: 22,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute bottom-40 left-20 w-[400px] h-[400px] bg-gradient-to-tr from-purple-500/15 to-pink-500/15 rounded-full blur-3xl"
+                />
+                {/* Tech Icons Floating */}
+                {['💻', '⚡', '🚀', '✨', '🎨'].map((icon, i) => (
+                    <motion.div
+                        key={i}
+                        animate={{
+                            y: [0, -40, 0],
+                            rotate: [0, 180, 360],
+                            opacity: [0.15, 0.35, 0.15],
+                        }}
+                        transition={{
+                            duration: 5 + i * 1.5,
+                            repeat: Infinity,
+                            delay: i * 0.5,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute text-5xl"
+                        style={{
+                            left: `${15 + i * 18}%`,
+                            top: `${10 + i * 12}%`,
+                        }}
+                    >
+                        {icon}
+                    </motion.div>
+                ))}
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Section Title */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}

@@ -3,10 +3,20 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  background-color: #0f172a; /* slate-900 */
 }
 
-/* Light mode */
+/* Dark mode - matches portfolio theme */
 body {
-  background-color: #f9fafb;
-  color: #111827;
+  background-color: #0f172a; /* slate-900 */
+  color: #f1f5f9; /* slate-100 */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Prevent white flash during page load and scrolling */
+html, body, #root {
+  background-color: #0f172a;
+  min-height: 100vh;
 }

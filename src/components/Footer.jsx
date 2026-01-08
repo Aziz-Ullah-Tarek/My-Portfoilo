@@ -1,76 +1,52 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaHeart, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFacebook, FaDiscord } from 'react-icons/fa';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
-    return (
-        <footer className="bg-slate-900 border-t border-slate-800 py-8">
-            <div className="max-w-7xl mx-auto px-4">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                    {/* Left - Copyright */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="text-center md:text-left"
-                    >
-                        <p className="text-gray-400 flex items-center gap-2 justify-center md:justify-start">
-                            Made with 
-                            <motion.span
-                                animate={{ scale: [1, 1.3, 1] }}
-                                transition={{ duration: 1, repeat: Infinity }}
-                            >
-                                <FaHeart className="text-red-500" />
-                            </motion.span>
-                            by <span className="text-cyan-400 font-semibold">Aziz Ullah Tarek</span>
-                        </p>
-                        <p className="text-gray-500 text-sm mt-1">
-                            © {currentYear} All rights reserved.
-                        </p>
-                    </motion.div>
+    const socialLinks = [
+        { icon: FaGithub, href: 'https://github.com/Aziz-Ullah-Tarek', color: 'hover:text-white' },
+        { icon: FaLinkedin, href: 'https://www.linkedin.com/in/aziz-ullah-tarek/', color: 'hover:text-cyan-400' },
+        { icon: FaFacebook, href: 'https://www.facebook.com/share/17NZg5CjPb/', color: 'hover:text-blue-400' },
+        { icon: FaDiscord, href: 'https://discord.com', color: 'hover:text-purple-400' },
+    ];
 
-                    {/* Right - Social Links */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="flex gap-4"
-                    >
-                        <motion.a
-                            href="https://github.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.2, y: -5 }}
-                            whileTap={{ scale: 0.9 }}
-                            className="p-3 bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white rounded-lg transition-colors duration-300"
-                        >
-                            <FaGithub className="text-xl" />
-                        </motion.a>
-                        <motion.a
-                            href="https://linkedin.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.2, y: -5 }}
-                            whileTap={{ scale: 0.9 }}
-                            className="p-3 bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-cyan-400 rounded-lg transition-colors duration-300"
-                        >
-                            <FaLinkedin className="text-xl" />
-                        </motion.a>
-                        <motion.a
-                            href="https://facebook.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.2, y: -5 }}
-                            whileTap={{ scale: 0.9 }}
-                            className="p-3 bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-blue-400 rounded-lg transition-colors duration-300"
-                        >
-                            <FaFacebook className="text-xl" />
-                        </motion.a>
-                    </motion.div>
+    return (
+        <footer className="bg-slate-900/80 backdrop-blur-sm border-t border-slate-800/50 py-6">
+            <div className="max-w-7xl mx-auto px-4">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    {/* Logo and Name */}
+                    <div className="flex items-center gap-3">
+                        <div className="relative">
+                            <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-slate-800 to-slate-900 rounded-full border-2 border-cyan-400/30">
+                                <span className="text-sm font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                                    AUT
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <p className="text-white font-semibold text-sm">Aziz Ullah Tarek</p>
+                            <p className="text-gray-500 text-xs">© {currentYear} All rights reserved</p>
+                        </div>
+                    </div>
+
+                    {/* Social Links */}
+                    <div className="flex gap-3">
+                        {socialLinks.map((social, index) => (
+                            <motion.a
+                                key={index}
+                                href={social.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.1, y: -2 }}
+                                whileTap={{ scale: 0.9 }}
+                                className={`p-2 bg-slate-800/50 text-gray-400 ${social.color} rounded-lg transition-colors duration-300`}
+                            >
+                                <social.icon className="text-lg" />
+                            </motion.a>
+                        ))}
+                    </div>
                 </div>
             </div>
         </footer>

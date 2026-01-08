@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiHome, HiMail, HiPhone } from 'react-icons/hi';
 import { FaFacebook, FaLinkedin, FaGithub, FaDiscord, FaPaperPlane } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -9,11 +10,42 @@ const Contact = () => {
         email: '',
         message: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission
-        console.log('Form submitted:', formData);
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+        
+        // EmailJS configuration
+        const serviceId = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
+        const templateId = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
+        const publicKey = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
+        
+        try {
+            await emailjs.send(
+                serviceId,
+                templateId,
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    message: formData.message,
+                    to_email: 'azizullaht2002@gmail.com'
+                },
+                publicKey
+            );
+            
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+            setTimeout(() => setSubmitStatus(null), 5000);
+        } catch (error) {
+            console.error('Error sending email:', error);
+            setSubmitStatus('error');
+            setTimeout(() => setSubmitStatus(null), 5000);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e) => {
@@ -318,29 +350,51 @@ const Contact = () => {
                             {/* Submit Button */}
                             <motion.button
                                 type="submit"
+                                disabled={isSubmitting}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
                                 whileHover={{ 
-                                    scale: 1.05,
+                                    scale: isSubmitting ? 1 : 1.05,
                                     boxShadow: '0 0 30px rgba(34, 211, 238, 0.5)'
                                 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-cyan-400/30 flex items-center justify-center gap-3 group"
+                                whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
+                                className={`w-full md:w-auto px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-cyan-400/30 flex items-center justify-center gap-3 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                             >
                                 <motion.span
                                     animate={{
-                                        x: [0, 5, 0],
+                                        x: isSubmitting ? 0 : [0, 5, 0],
+                                        rotate: isSubmitting ? 360 : 0,
                                     }}
                                     transition={{
-                                        duration: 1.5,
-                                        repeat: Infinity,
+                                        duration: isSubmitting ? 1 : 1.5,
+                                        repeat: isSubmitting ? Infinity : Infinity,
                                     }}
                                 >
                                     <FaPaperPlane className="text-xl group-hover:rotate-45 transition-transform duration-300" />
                                 </motion.span>
-                                <span>Send Message</span>
+                                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                             </motion.button>
+                            
+                            {/* Status Messages */}
+                            {submitStatus === 'success' && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="p-4 bg-green-500/20 border border-green-500 rounded-xl text-green-400 text-center"
+                                >
+                                    ✓ Message sent successfully! I'll get back to you soon.
+                                </motion.div>
+                            )}
+                            {submitStatus === 'error' && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="p-4 bg-red-500/20 border border-red-500 rounded-xl text-red-400 text-center"
+                                >
+                                    ✗ Failed to send message. Please try again or email me directly.
+                                </motion.div>
+                            )}
                         </motion.form>
                     </motion.div>
                 </div>

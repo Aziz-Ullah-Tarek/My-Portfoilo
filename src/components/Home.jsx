@@ -44,8 +44,124 @@ const Home = () => {
     ];
 
     return (
-        <section id="home" className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pt-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
+        <section id="home" className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pt-20 relative overflow-hidden">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                {/* Gradient Blobs */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.3, 1],
+                        rotate: [0, 90, 0],
+                        opacity: [0.3, 0.6, 0.3],
+                    }}
+                    transition={{
+                        duration: 15,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute -top-20 -left-20 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1.2, 1, 1.2],
+                        rotate: [90, 0, 90],
+                        opacity: [0.4, 0.7, 0.4],
+                    }}
+                    transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-gradient-to-l from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        y: [0, -50, 0],
+                        opacity: [0.2, 0.5, 0.2],
+                    }}
+                    transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute bottom-20 left-1/3 w-72 h-72 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl"
+                />
+                
+                {/* Floating Stars */}
+                {[...Array(30)].map((_, i) => (
+                    <motion.div
+                        key={`star-${i}`}
+                        animate={{
+                            y: [0, -30, 0],
+                            x: [0, Math.random() * 20 - 10, 0],
+                            opacity: [0.2, 1, 0.2],
+                            scale: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                            duration: 3 + Math.random() * 4,
+                            repeat: Infinity,
+                            delay: i * 0.2,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute w-1 h-1 bg-cyan-400 rounded-full"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                    />
+                ))}
+                
+                {/* Floating Code Symbols */}
+                {['</', '{}', '/>', '[]', '()', '<>', '==', '++', '=>', '&&'].map((symbol, i) => (
+                    <motion.div
+                        key={`symbol-${i}`}
+                        animate={{
+                            y: [0, -30, 0],
+                            x: [0, Math.random() * 20 - 10, 0],
+                            opacity: [0.1, 0.3, 0.1],
+                            rotate: [0, 10, -10, 0],
+                        }}
+                        transition={{
+                            duration: 4 + i,
+                            repeat: Infinity,
+                            delay: i * 0.8,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute text-3xl md:text-4xl font-mono text-cyan-400/20 font-bold"
+                        style={{
+                            left: `${5 + (i * 10) % 90}%`,
+                            top: `${15 + (i * 8) % 70}%`,
+                        }}
+                    >
+                        {symbol}
+                    </motion.div>
+                ))}
+                
+                {/* Animated Circles/Dots */}
+                {[...Array(15)].map((_, i) => (
+                    <motion.div
+                        key={`circle-${i}`}
+                        animate={{
+                            y: [0, -50, 0],
+                            opacity: [0.1, 0.5, 0.1],
+                            scale: [1, 1.5, 1],
+                        }}
+                        transition={{
+                            duration: 5 + i * 0.5,
+                            repeat: Infinity,
+                            delay: i * 0.3,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute w-2 h-2 border-2 border-purple-400/30 rounded-full"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                    />
+                ))}
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
                     
                     {/* Left Content */}

@@ -11,7 +11,7 @@ export const personalInfo = {
     "Problem Solver",
     "Creative Developer"
   ],
-  email: "aziz@example.com",
+  email: "azizullaht2002@gmail.com",
   phone: "+880 123 456 7890",
   location: "Dhaka, Bangladesh",
   avatar: "/avatar.jpg",
@@ -74,8 +74,8 @@ export const aboutMe = {
 };
 
 export const socialLinks = {
-  github: "https://github.com/azizullahtarek",
-  linkedin: "https://linkedin.com/in/azizullahtarek",
+  github: "https://github.com/Aziz-Ullah-Tarek",
+  linkedin: "https://www.linkedin.com/in/aziz-ullah-tarek/",
   twitter: "https://twitter.com/azizullahtarek",
   portfolio: "https://azizullahtarek.com"
 };
