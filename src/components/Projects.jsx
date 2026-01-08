@@ -127,6 +127,53 @@ const Projects = () => {
                     </motion.div>
                 ))}
                 
+                {/* Floating Stars */}
+                {[...Array(25)].map((_, i) => (
+                    <motion.div
+                        key={`star-${i}`}
+                        animate={{
+                            y: [0, -30, 0],
+                            x: [0, Math.random() * 15 - 7.5, 0],
+                            opacity: [0.2, 1, 0.2],
+                            scale: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                            duration: 3 + Math.random() * 3,
+                            repeat: Infinity,
+                            delay: i * 0.15,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute w-1 h-1 bg-cyan-400 rounded-full"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                    />
+                ))}
+                
+                {/* Animated Circles */}
+                {[...Array(12)].map((_, i) => (
+                    <motion.div
+                        key={`circle-${i}`}
+                        animate={{
+                            y: [0, -40, 0],
+                            opacity: [0.1, 0.4, 0.1],
+                            scale: [1, 1.5, 1],
+                        }}
+                        transition={{
+                            duration: 5 + i * 0.4,
+                            repeat: Infinity,
+                            delay: i * 0.25,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute w-2 h-2 border-2 border-purple-400/30 rounded-full"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                    />
+                ))}
+                
                 {/* Grid Pattern Overlay */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
             </div>

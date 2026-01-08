@@ -159,6 +159,37 @@ const Home = () => {
                         }}
                     />
                 ))}
+                
+                {/* Floating AUT Logos */}
+                {[...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={`logo-${i}`}
+                        animate={{
+                            y: [0, -40, 0],
+                            x: [0, Math.sin(i) * 20, 0],
+                            opacity: [0.03, 0.08, 0.03],
+                            rotate: [0, 15, -15, 0],
+                            scale: [0.8, 1.2, 0.8],
+                        }}
+                        transition={{
+                            duration: 8 + i * 1.5,
+                            repeat: Infinity,
+                            delay: i * 0.7,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute"
+                        style={{
+                            left: `${10 + (i * 12) % 80}%`,
+                            top: `${10 + (i * 15) % 70}%`,
+                        }}
+                    >
+                        <div className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-full border border-cyan-400/20">
+                            <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                                AUT
+                            </span>
+                        </div>
+                    </motion.div>
+                ))}
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center relative z-10">
